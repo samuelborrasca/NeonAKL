@@ -1,5 +1,5 @@
 # NeonAKL
-Neon is a keyboard layout originally by Turtlyn, adapted to kanata by Samuel / Borrasca.\
+Neon is a keyboard layout originally by Turtlyn, adapted to kanata by Samuel / Borrasca.
 
 ```
     y p d m b  z j u o y 
