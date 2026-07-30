@@ -15,7 +15,7 @@ Notes:\
 • home row mods\
 • combos for backspace, tab and enter on base layer\
 • combos for qwerty layer, cut, copy and paste on all layers\
-• hold y- w combo to switch from neon to qwerty, tap the same combo to switch from qwerty to neon
+• hold y- w combo to switch from neon to qwerty, tap the same combo to switch from qwerty to neon\
 • custom sym layer with tap-holds for shifted keys
 
 ![Neon](neon2.png)
