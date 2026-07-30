@@ -1,4 +1,6 @@
-;;neon
+;;neon 2
+;;r thumb
+;;doubled y
 
 (defcfg
 process-unmapped-keys yes
@@ -21,19 +23,19 @@ windows-altgr cancel-lctl-press
 ;; Top layer
 
 #|
-    y p d m b  z j u o y 
-OS⇧ n c t s f  x r i a h OS⇧
-     q w g ★ v  k l , . 
-         ␣        e
+    y w d g v  q j u o y 
+OS⇧ n c t s k  x h e a i OS⇧
+     p m b f z  ' l , . 
+         ␣        r
 
-y- + p combo held for qwerty toggle
-q + w combo for ⭾ (only on top and sym layer)
+y- + w combo held for qwerty toggle
+p + m combo for ⭾ (only on top and sym layer)
 u + o combo for ⌫ (only on top layer)
 . + , combo for ↩ (only on top layer)
 
-p + d combo for copy
-p + m combo for cut
-d + m combo for paste
+w + d combo for copy
+w + g combo for cut
+d + g combo for paste
 |#
 
 
@@ -42,12 +44,12 @@ mlft mlft ;; so mods would work kinda like qmk's speculative hold when clicking/
 ;;upper row
 ;;left
 q y	
-w p	
+w w	
 e d	
-r m	
-t b
+r g	
+t v
 ;;right
-u z
+u q
 i j
 o u
 p o
@@ -60,32 +62,32 @@ a @n
 s @c
 d @t
 f @s
-g f
+g k
 ;;right
 j x
-k @r
-l @i
+k @h
+l @e
 ; @a
-' @h
+' @i
 \ (one-shot 2000 ⇧›)
 
 ;;bottom row
 ;;left
 102d XX ;; this is the small key between left shift and Z on ISO keyboards, also called lsgt 
-z q
-x w
-c g
-v rpt
-b v
+z p
+x m
+c b
+v f
+b z
 ;;right
-m k
+m @'
 , l
 . @,
 / @.
 
 ;;thumb keys
 ␣ @␣
-ralt @e
+ralt @r
 
 ;;makes the unused alpha keys output nothing instead of the original key, but keeps all other keys like numrow and fn working normally
 _ •
@@ -99,7 +101,7 @@ _ •
 ↩ ↩)
 
 (defchordsv2 
-	($q $w) (on-press tap-vkey ⭾) $chord-timeout all-released (nav)
+	($p $m) (on-press tap-vkey ⭾) $chord-timeout all-released (nav)
 	($o $u) (multi 
 			(on-press tap-vkey ⌫) 
 			(macro-release-cancel 
@@ -109,11 +111,11 @@ _ •
 		   ) $chord-timeout first-release (sym nav)
 	($, $.) (on-press tap-vkey ↩) $chord-timeout all-released (sym nav)
 	
-	($p $m) C-x $chord-timeout all-released ()
-	($p $d) C-c $chord-timeout all-released ()
-	($d $m) C-v $chord-timeout all-released ()
-	($y- $p) (switch 
-			((base-layer qwerty)) (tap-hold 0 $hold-timeout XX (layer-switch neon)) break
+	($w $g) C-x $chord-timeout all-released ()
+	($w $d) C-c $chord-timeout all-released ()
+	($d $g) C-v $chord-timeout all-released ()
+	($y- $w) (switch 
+			((base-layer qwerty)) (layer-switch neon) break
 			() (tap-hold 0 $hold-timeout XX (layer-switch qwerty)) break 
 		   ) $chord-timeout all-released ()
 
@@ -148,7 +150,7 @@ _ •
     esc 🔇 🔉 🔊      ↖ ▲ ↘    
 OS⇧ ‹⎈ ‹⎇ ‹❖ ⎇Gr     ◀ ▼ ▶ Cw OS⇧
       ⭾  ␣              ␡ ⌫ ↩  	
-     layerlock                                
+     				   layerlock                                
 |#
 
 (defalias 
@@ -205,8 +207,8 @@ _ •
 ;; Sym layer, includes numbers. All shift behaviors are custom instead of the qwerty defaults.
 
 #|    
-    < [ { ( ~	  ! - ' " 
-OS⇧ 3 2 1 0 /    ; 5 6 7 8 OS⇧ 
+    < [ { ( ~	  ! - ; " 
+OS⇧ 3 2 1 0 /    $ 5 6 7 8 OS⇧ 
      % @ + 4      9 ` ⌫ ↩ 	
        layerlock              
 |#            
@@ -224,7 +226,7 @@ t @~
 ;;right
 i @!
 o @-
-p @'
+p @;
 [ @dq
 
 ;;home row
@@ -236,7 +238,7 @@ d @1
 f @0
 g @/
 ;;right 
-j @;
+j @$
 k @5
 l @6
 ; @7
@@ -272,9 +274,9 @@ _ •
 )
 
 (defalias 
-; (t! symkey ; S-;)
+' (t! symkey ' (unshift '))
 , (t! symkey , (unshift ,)) 
-. (t! symkey . (unshift .)) 
+. (t! symkey . (unshift .))
 < (t! symkey S-, S-.)
 [ (t! symkey [ (unshift ]) ) 
 { (t! symkey S-[ S-]) 
@@ -282,14 +284,15 @@ prnth (t! symkey S-9 S-0)
 ~ (t! symkey S-` S-6) 
 ! (t! symkey S-1 S-/)
 - (t! symkey - S--)
-' (fork (tap-hold 0 $hold-timeout ' (macro ' ' left)) (macro (unshift ') (unshift ') (unshift left)) (lsft rsft))
+; (t! symkey ; S-;)
 dq (fork (tap-hold 0 $hold-timeout S-' (macro S-' S-' left)) (macro S-' S-' (unshift left)) (lsft rsft))
 / (t! symkey / (unshift \) ) 
+$ (t! symkey S-4 S-3)
 % (t! symkey S-5 S-8) 
 @ (t! symkey S-2 S-7) 
 + (t! symkey S-= (unshift =) ) 
-4 (t! symkey 4 S-3)
-9 (t! symkey 9 S-4)
+4 (t! symkey 4 (unshift 4))
+9 (t! symkey 9 (unshift 9))
 ` (t! symkey ` S-\) 
 )
 
@@ -302,11 +305,11 @@ dq (fork (tap-hold 0 $hold-timeout S-' (macro S-' S-' left)) (macro S-' S-' (uns
  chord-timeout 30
 
 y- q
-p w
+w w
 d e
-m r
-b t
-z u
+g r
+v t
+q u
 j i
 u o
 o p
@@ -316,36 +319,36 @@ n a
 c s
 t d
 s f
-f g
+k g
 x j
-r k
-i l
+h k
+e l
 a ;
-h '
+i '
 
-q z
-w x
-g c
-rpt v
-v b
-k m
+p z
+m x
+b c
+f v
+z b
+' m
 l ,
 , .
 . /
 ␣ ␣
-e ralt
+r ralt
 
 lkeys ( 
- $y- $p $d $m $b 
- $n $c $t $s $f
- $q $w $g $rpt $v
+ $y- $w $d $g $v 
+ $n $c $t $s $k
+ $p $m $b $f $z
        $␣
  )
 rkeys (
- $z $j $u $o $-y
- $x $r $i $a $h
- $k $l $, $. 
-    $e
+ $q $j $u $o $-y
+ $x $h $e $a $i
+ $' $l $, $. 
+    $r
  )
 )
 
@@ -383,11 +386,11 @@ rkeys (
 )
 
 ;;right side
-(t! mod h	⎈›	$rkeys)
+(t! mod i	⎈›	$rkeys)
 (t! mod a	‹⎇	$rkeys)
-(t! mod i	❖›	$rkeys)
-(t! mod r 	ralt   $rkeys)
-(defalias e (tap-hold-release $tap-timeout $hold-timeout e (layer-while-held sym) )
+(t! mod e	❖›	$rkeys)
+(t! mod h 	ralt   $rkeys)
+(defalias r (tap-hold-release $tap-timeout $hold-timeout r (layer-while-held sym) )
 )
 
 ;;sym layer
