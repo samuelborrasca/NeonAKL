@@ -2,20 +2,19 @@
 Neon is a keyboard layout originally by Turtlyn, adapted to kanata by Samuel / Borrasca.
 
 ```
-    y p d m b  z j u o y 
-OS⇧ n c t s f  x r i a h OS⇧
-     q w g ★ v  k l , . 
-         ␣        e
+    y w d g v  q j u o y 
+OS⇧ n c t s k  x h e a i OS⇧
+     p m b f z  ' l , . 
+         ␣        r
 ```
 
 Notes:\
-• thumb e\
-• mirrored Y\
-• index repeat key\
-• one shot shift on pinkies\
+• thumb r\
+• mirrored Y: if these are pressed in sequence and overlap, only one Y is output\
+• one shot shift on outer pinkies\
 • home row mods\
 • combos for backspace, tab and enter on base layer\
 • combos for qwerty layer, cut, copy and paste on all layers\
 • custom sym layer with tap-holds for shifted keys
 
-![Neon](neon.png)
+![Neon](neon2.png)
